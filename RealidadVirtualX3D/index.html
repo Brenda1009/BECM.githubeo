@@ -8,21 +8,71 @@
     <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script> 
     <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'>
 </head>
-<body>
+<body> 
     <x3d>
         <scene>
+            <transform DEF="SSolar">
+    <!--Sol-->
             <shape>
                 <appearance>
                   <!-- <material diffuseColor='1 0 0' /-->
-                    <imageTexture url="imagen/asphalt_7.jpg"/>
+                    <imageTexture url="texturas/csol.jpg"/>
                 </appearance>
-                <box /><!--cuadrado
+                <sphere /> <!--bolita 
+               <box />--cuadrado
                 <sphere /> --bolita 
                 <cone/>--cono 
                 <cylinder/> --cilindro*/-->
             </shape>
+<!--Planeta mercurio-->
+<transform translation="2 0 0" scale="0.2 0.2 0.2">
+    <inline url="mercurio.x3d"> </inline>
+</transform>
+
+<!--Venus-->
+
+<transform translation="3 0 0" scale="0.25 0.25 0.25">
+    <inline url="venus.x3d"> </inline>
+</transform>
+
+<!--Tierra-->
+<transform translation="4 0 0" scale="0.26 0.26 0.26">
+    <inline url="tierra.x3d"> </inline>
+</transform>
+
+<!--Marte-->
+<transform translation="5 0 0" scale="0.27 0.27 0.27">
+    <inline url="marte.x3d"> </inline>
+</transform>
+
+<!--Júpiter-->
+<transform translation="6 0 0" scale="0.27 0.27 0.27">
+    <inline url="jupiter.x3d"> </inline>
+</transform>
+
+<!--Saturno-->
+<transform translation="7 0 0" scale="0.27 0.27 0.27">
+    <inline url="saturno.x3d"> </inline>
+</transform>
+
+<!--Urano-->
+<transform translation="6 0 0" scale="0.27 0.27 0.27">
+    <inline url="urano.x3d"> </inline>
+</transform>
+
+<!--Neptuno-->
+<transform translation="6 0 0" scale="0.27 0.27 0.27">
+    <inline url="neptuno.x3d"> </inline>
+</transform>
+            <!-- Parámetros de animación: sensor de tiempo y cuál eje se animará -->
+<timeSensor DEF='timer' cycleInterval='10' loop='true'></timeSensor>
+<orientationInterpolator DEF='rotator' key='0 0.5 1' keyValue='0 1 0 0 0 1 0 3.14 0 1 0 6.28'>
+</orientationInterpolator>
+        </transform>
+        <!-- ROUTE canaliza el sensor de tiempo y la rotación al transform -->
+<ROUTE fromNode='timer' fromField='fraction_changed' toNode='rotator' toField='set_fraction'></ROUTE>
+<ROUTE fromNode='rotator' fromField='value_changed' toNode='SSolar' toField='set_rotation'></ROUTE>
         </scene>
     </x3d>
-    
 </body>
 </html>
